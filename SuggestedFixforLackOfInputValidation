@@ -1,0 +1,16 @@
+// Original Vulernable Code
+
+@external
+@view 
+def get_players(index: uint256) -> address:
+    return self.players[index]
+
+// To mitigate this vulnerability, you could add a check to ensure the index is valid before accessing the players array. Here’s how you could refactor the code:
+
+@external
+@view 
+def get_players(index: uint256) -> address:
+    assert index < len(self.players), "Index out of bounds"
+    return self.players[index]
+
+// In this code, an assertion checks that the index is less than the length of the players array. If the index is out of bounds, an assertion error is thrown with the message “Index out of bounds”. This prevents the function from accessing an invalid index and causing a runtime error.
