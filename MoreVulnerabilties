@@ -1,0 +1,9 @@
+1) Lack of Access Control: The request_raffle_winner and rawFulfillRandomWords functions are marked as external, which means they can be called by any address. If these functions are intended to be restricted to certain roles (like an owner or administrator), you should implement appropriate access control measures.
+
+2) Potential for Front-Running: The enter_raffle function allows users to enter the raffle by sending the entrance fee. However, since Ethereum transactions are public, a malicious miner could potentially front-run a transaction to enter the raffle at a favorable time.
+
+3) No Checks for Contract Pausing or Destruction: There are no functions to pause the contract in case of emergencies or to self-destruct the contract if needed. These are common features in smart contracts that can help manage unforeseen situations or contract upgrades.
+
+4) No Event Logs for Important State Changes: While some functions emit events, not all state-changing functions do. For example, the enter_raffle function does not emit an event when a new player enters. Event logs are crucial for off-chain services to track the state of the contract.
+
+5) No Input Validation for rawFulfillRandomWords: The rawFulfillRandomWords function does not validate its inputs. This could lead to unexpected behavior if incorrect inputs are provided.
